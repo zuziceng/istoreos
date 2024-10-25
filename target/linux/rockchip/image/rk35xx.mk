@@ -412,3 +412,13 @@ $(call Device/rk3308)
   DEVICE_PACKAGES := kmod-usb-net-rtl8152 ethtool kmod-rkwifi-bcmdhd rkwifi-firmware-ap6256 kmod-sound-soc-rk3308
 endef
 # TARGET_DEVICES += armsom_p2-pro
+
+define Device/xunlong_orangepi-5-plus
+  DEVICE_VENDOR := Xunlong
+  DEVICE_MODEL := Orange Pi 5 Plus
+  SOC := rk3588
+  UBOOT_DEVICE_NAME := orangepi-5-plus-rk3588
+  IMAGE/sysupgrade.img.gz := boot-common | boot-script | pine64-img | gzip | append-metadata
+  DEVICE_PACKAGES := kmod-r8125-rss
+endef
+TARGET_DEVICES += xunlong_orangepi-5-plus
