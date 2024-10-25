@@ -1,4 +1,4 @@
-name: istareos
+name: istoreos
 
 on:
   workflow_dispatch:
