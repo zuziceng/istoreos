@@ -33,6 +33,7 @@ rockchip_setup_interfaces()
 	friendlyelec,nanopi-r5s|friendlyelec,nanopi-r5s-c1)
 		ucidef_set_interfaces_lan_wan "eth1 eth2" "eth0"
 		;;
+	easepi,r1|\
 	roceos,k40pro|\
 	lyt,t68m|\
 	fastrhino,r68s|\
@@ -93,6 +94,7 @@ rockchip_setup_macs()
 	case "$board" in
 	armsom,sige7-v1|\
 	easepi,ars4|\
+	easepi,r1|\
 	firefly,rk3568-roc-pc|\
 	friendlyelec,nanopi-r3s|\
 	friendlyelec,nanopi-r5s|\
