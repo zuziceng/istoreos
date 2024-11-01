@@ -363,6 +363,7 @@ define Device/radxa_e52c
 $(call Device/rk3582)
   DEVICE_VENDOR := Radxa
   DEVICE_MODEL := E52C
+  UBOOT_DEVICE_NAME := easepi-ddr1-rk3588
 endef
 TARGET_DEVICES += radxa_e52c
 
