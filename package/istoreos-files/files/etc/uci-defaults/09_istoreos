@@ -13,13 +13,14 @@ EOF
 
 uci set dockerd.globals.data_root=/overlay/upper/opt/docker
 
-if [ ! -f /proc/device-tree/chosen/default-firewall ] || grep -qFw nas /proc/device-tree/chosen/default-firewall; then
-    uci -q batch <<-EOF >/dev/null
-        delete ucitrack.@wan_drop[-1]
-        add ucitrack wan_drop
-        set ucitrack.@wan_drop[-1].init=wan_drop
-        commit ucitrack
+uci -q batch <<-EOF >/dev/null
+    delete ucitrack.@wan_drop[-1]
+    add ucitrack wan_drop
+    set ucitrack.@wan_drop[-1].init=wan_drop
+    commit ucitrack
 EOF
+
+if [ ! -f /proc/device-tree/chosen/default-firewall ] || grep -qFw nas /proc/device-tree/chosen/default-firewall; then
 
 if grep -qFw nas /proc/device-tree/chosen/default-firewall; then
     WAN_ZONE=`uci show firewall | grep -E '^firewall\.@zone\[[0-9]+\]\.name=' | grep wan | head -n1 | head -c -12`
@@ -30,9 +31,10 @@ if grep -qFw nas /proc/device-tree/chosen/default-firewall; then
 EOF
 fi
 
-    if [ -e /etc/config/minidlna ]; then
+    WAN_IF=`jsonfilter -i /etc/board.json -e '@.network.wan.device'`
+    if [ -n "$WAN_IF" -a -e /etc/config/minidlna ]; then
         uci -q batch <<-EOF >/dev/null
-            set minidlna.@minidlna[0].interface='br-lan,eth0'
+            set minidlna.@minidlna[0].interface='br-lan,$WAN_IF'
             commit minidlna
 EOF
     fi
