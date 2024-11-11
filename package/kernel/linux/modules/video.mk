@@ -1141,7 +1141,7 @@ $(eval $(call KernelPackage,video-gspca-konica))
 define KernelPackage/drm-i915
   SUBMENU:=$(VIDEO_MENU)
   TITLE:=Intel GPU drm support
-  DEPENDS:=@TARGET_x86 +kmod-drm-ttm +kmod-drm-kms-helper +i915-firmware
+  DEPENDS:=@TARGET_x86 +kmod-backlight +kmod-drm-ttm +kmod-drm-kms-helper +i915-firmware
   KCONFIG:= \
 	CONFIG_DRM_I915 \
 	CONFIG_DRM_I915_CAPTURE_ERROR=y \
