@@ -29,6 +29,18 @@ EOF
 EOF
 else
     /etc/init.d/wan_drop disable
+    if grep -qFw dual /proc/device-tree/chosen/default-firewall; then
+        # firewall.allow_wan_input will auto enabled by /etc/hotplug.d/iface/19-fw-wan-input
+        uci -q batch <<-EOF >/dev/null
+            set firewall.allow_wan_input=rule
+            set firewall.allow_wan_input.name='Allow-WAN-Input'
+            set firewall.allow_wan_input.proto='all'
+            set firewall.allow_wan_input.src='wan'
+            set firewall.allow_wan_input.target='ACCEPT'
+            set firewall.allow_wan_input.enabled='0'
+            commit firewall
+EOF
+    fi
 fi
 
 if ! grep -qFw router /proc/device-tree/chosen/default-firewall; then
