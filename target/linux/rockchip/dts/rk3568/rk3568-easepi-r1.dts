@@ -11,5 +11,6 @@
 
 	chosen {
 		default-firewall = "dual";
+		power-key-factory-reset;
 	};
 };
