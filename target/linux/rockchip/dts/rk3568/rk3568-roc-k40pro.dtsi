@@ -191,23 +191,17 @@
 		regulator-boot-on;
 		regulator-min-microvolt = <3300000>;
 		regulator-max-microvolt = <3300000>;
-		enable-active-high;
-		gpio = <&gpio0 RK_PB6 GPIO_ACTIVE_HIGH>;
-		pinctrl-names = "default";
-		pinctrl-0 = <&vcc3v3_sys_en>;
-		vin-supply = <&vcc5v0_sys>;
+		vin-supply = <&dc_12v>;
 	};
 
 	vcc5v0_otg: vcc5v0-otg-regulator {
 		compatible = "regulator-fixed";
 		regulator-name = "vcc5v0_otg";
+		regulator-always-on;
+		regulator-boot-on;
 		regulator-min-microvolt = <5000000>;
 		regulator-max-microvolt = <5000000>;
-		enable-active-high;
-		gpio = <&gpio0 RK_PA5 GPIO_ACTIVE_HIGH>;
 		vin-supply = <&vcc5v0_sys>;
-		pinctrl-names = "default";
-		pinctrl-0 = <&vcc5v0_otg_en>;
 	};
 
 	pcie30_avdd0v9: pcie30-avdd0v9 {
@@ -228,31 +222,6 @@
 		regulator-min-microvolt = <1800000>;
 		regulator-max-microvolt = <1800000>;
 		vin-supply = <&vcc3v3_sys>;
-	};
-
-	vcc3v3_pcie: vcc3v3-pcie {
-		compatible = "regulator-fixed";
-		regulator-name = "vcc3v3_pcie";
-		regulator-min-microvolt = <3300000>;
-		regulator-max-microvolt = <3300000>;
-		enable-active-high;
-		gpio = <&gpio0 RK_PC4 GPIO_ACTIVE_HIGH>;
-		startup-delay-us = <5000>;
-		vin-supply = <&vcc5v0_sys>;
-	};
-
-	gpio-keys {
-		compatible = "gpio-keys";
-		pinctrl-names = "default";
-		pinctrl-0 = <&reset_button>;
-
-		button@1 {
-			label = "reset_button";
-			linux,code = <KEY_RESTART>;
-			gpios = <&gpio0 RK_PA0 GPIO_ACTIVE_LOW>;
-			linux,input-type = <1>;
-			debounce-interval = <60>;
-		};
 	};
 
 	sdio_pwrseq: sdio-pwrseq {
@@ -740,13 +709,6 @@
 		*/
 	};
 
-	keys {
-		reset_button: reset-button {
-			rockchip,pins =
-				<0 RK_PA0 RK_FUNC_GPIO &pcfg_pull_up>;
-		};
-	};
-
 	pmic {
 		pmic_int: pmic_int {
 			rockchip,pins = <0 RK_PA3 RK_FUNC_GPIO &pcfg_pull_up>;
@@ -762,18 +724,6 @@
 
 		soc_slppin_rst: soc_slppin_rst {
 			rockchip,pins = <0 RK_PA2 2 &pcfg_pull_none>;
-		};
-	};
-
-	usb {
-		vcc5v0_otg_en: vcc5v0-otg-en {
-			rockchip,pins = <0 RK_PA5 RK_FUNC_GPIO &pcfg_pull_none>;
-		};
-	};
-
-	vcc {
-		vcc3v3_sys_en: vcc3v3-sys-en {
-			rockchip,pins = <0 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
 		};
 	};
 
@@ -995,7 +945,6 @@
 };
 
 &pcie2x1 {
-	vpcie3v3-supply = <&vcc3v3_pcie>;
 	status = "disabled";
 };
 
@@ -1006,14 +955,12 @@
 
 &pcie3x1 {
 	rockchip,bifurcation;
-	vpcie3v3-supply = <&vcc3v3_pcie>;
 	status = "okay";
 
 };
 
 &pcie3x2 {
 	rockchip,bifurcation;
-	vpcie3v3-supply = <&vcc3v3_pcie>;
 	status = "okay";
 };
 

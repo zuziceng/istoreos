@@ -29,6 +29,18 @@
 		regulator-name = "vcc-pwr-25g";
 		regulator-always-on;
 	};
+
+	vcc3v3_nvme: vcc3v3-nvme-regulator {
+		compatible = "regulator-fixed";
+		regulator-name = "vcc3v3_nvme";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		enable-active-high;
+		gpio = <&gpio0 RK_PA5 GPIO_ACTIVE_HIGH>;
+		vin-supply = <&dc_12v>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&vcc3v3_nvme_en>;
+	};
 };
 
 &gmac0 {
@@ -170,6 +182,7 @@
 
 &pcie3x2 {
 	reset-gpios = <&gpio2 RK_PD6 GPIO_ACTIVE_HIGH>;
+	vpcie3v3-supply = <&vcc3v3_nvme>;
 	status = "okay";
 };
 
@@ -177,6 +190,11 @@
 	pwr-25g {
 		pwr_25g_en: pwr-25g-en {
 			rockchip,pins = <3 RK_PB1 RK_FUNC_GPIO &pcfg_output_high>;
+		};
+	};
+	nvme {
+		vcc3v3_nvme_en: vcc3v3-nvme-en {
+			rockchip,pins = <0 RK_PA5 RK_FUNC_GPIO &pcfg_pull_none>;
 		};
 	};
 };
