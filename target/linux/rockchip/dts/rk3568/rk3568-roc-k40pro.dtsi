@@ -768,7 +768,7 @@
 	leds {
 		led_green_en: led-green-en {
 			rockchip,pins =
-				<3 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
+				<2 RK_PD7 RK_FUNC_GPIO &pcfg_pull_none>;
 		};
 		/*
 		led_yellow_en: led-yellow-en {
