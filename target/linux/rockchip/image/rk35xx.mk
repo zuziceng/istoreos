@@ -159,7 +159,7 @@ $(call Device/rk3568)
   DEVICE_MODEL := R1
   DEVICE_DTS := rk3568-easepi-r1
   SUPPORTED_DEVICES += easepi,r1
-  DEVICE_PACKAGES := kmod-r8125 kmod-nvme kmod-thermal
+  DEVICE_PACKAGES := kmod-r8125 kmod-r8168 kmod-nvme kmod-thermal
 endef
 TARGET_DEVICES += easepi_r1
 
@@ -381,7 +381,7 @@ $(call Device/rk3568)
   DEVICE_MODEL := K40PRO
   DEVICE_DTS := rk3568-roc-k40pro
   SUPPORTED_DEVICES += roceos,k40pro
-  DEVICE_PACKAGES := kmod-r8125 kmod-nvme kmod-thermal
+  DEVICE_PACKAGES := kmod-r8125 kmod-r8168 kmod-nvme kmod-thermal
 endef
 TARGET_DEVICES += roc_k40pro
 
