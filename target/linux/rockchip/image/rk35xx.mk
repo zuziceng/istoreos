@@ -379,7 +379,7 @@ define Device/roc_k40pro
 $(call Device/rk3568)
   DEVICE_VENDOR := ROCEOS
   DEVICE_MODEL := K40PRO
-  DEVICE_DTS := rk3568-roc-k40pro
+  DEVICE_DTS := rk3568-roc-k40pro-v2
   SUPPORTED_DEVICES += roceos,k40pro
   DEVICE_PACKAGES := kmod-r8125 kmod-r8168 kmod-nvme kmod-thermal
 endef
