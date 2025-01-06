@@ -9,10 +9,6 @@
 	hwmodel_id = "R2";
 	hw_support = "hdmi";
 
-	aliases {
-		lcd-backlight = &lcd_backlight;
-	};
-
 	vcc3v3_nvme: vcc3v3-nvme-regulator {
 		compatible = "regulator-fixed";
 		regulator-name = "vcc3v3_nvme";
@@ -25,12 +21,6 @@
 		pinctrl-0 = <&vcc3v3_nvme_en>;
 	};
 
-	lcd_backlight: lcd-backlight {
-		compatible = "gpio-backlight";
-		pinctrl-names = "default";
-		pinctrl-0 = <&backlight_led_pin>;
-		gpios = <&gpio2 RK_PD7 GPIO_ACTIVE_HIGH>;
-	};
 };
 
 &gmac0 {
@@ -128,11 +118,6 @@
 	nvme {
 		vcc3v3_nvme_en: vcc3v3-nvme-en {
 			rockchip,pins = <0 RK_PA5 RK_FUNC_GPIO &pcfg_pull_none>;
-		};
-	};
-	backlight {
-		backlight_led_pin: backlight-led-pin {
-			rockchip,pins = <2 RK_PD7 RK_FUNC_GPIO &pcfg_pull_none>;
 		};
 	};
 };
