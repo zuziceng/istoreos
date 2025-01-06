@@ -163,6 +163,16 @@ $(call Device/rk3568)
 endef
 TARGET_DEVICES += easepi_r1
 
+define Device/easepi_r2
+$(call Device/rk3568)
+  DEVICE_VENDOR := EasePi
+  DEVICE_MODEL := R2
+  DEVICE_DTS := rk3568-easepi-r2
+  SUPPORTED_DEVICES += easepi,r2
+  DEVICE_PACKAGES := kmod-r8125 kmod-nvme kmod-thermal
+endef
+TARGET_DEVICES += easepi_r2
+
 define Device/friendlyelec_nanopi-r3s
 $(call Device/rk3566)
   DEVICE_VENDOR := FriendlyARM
