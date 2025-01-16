@@ -5,11 +5,15 @@ export_ota_url() {
 	local board="$(board_name)"
 	case "$board" in
 	hlink,h28k|\
+	linkfog,ala2|\
 	radxa,e20c|\
 	radxa,e52c|\
 	easepi,ars4|\
 	lyt,t68m)
 		export -n OTA_URL_BASE="https://fw0.koolcenter.com/iStoreOS/${board##*,}"
+		;;
+	easepi,r1)
+		export -n OTA_URL_BASE="https://fw0.koolcenter.com/iStoreOS/easepi-r1"
 		;;
 	fastrhino,r66s|\
 	fastrhino,r68s)

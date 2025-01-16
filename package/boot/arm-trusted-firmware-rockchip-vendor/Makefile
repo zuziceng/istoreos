@@ -46,6 +46,8 @@ define Trusted-Firmware-A/rk3588
   BUILD_SUBTARGET:=rk35xx
   ATF:=rk35/$(RK3588_ATF)
   DDR:=rk35/$(RK3588_DDR)
+  DDR1:=rk35/$(RK3588_DDR_LOWFREQ)
+  DDR2:=rk35/$(RK3588_DDR_UART2_115200)
 endef
 
 TFA_TARGETS:= \
@@ -82,6 +84,9 @@ else
 	$(CP) $(PKG_BUILD_DIR)/bin/$(DDR) $(STAGING_DIR_IMAGE)/
 ifneq ($(DDR1),)
 	$(CP) $(PKG_BUILD_DIR)/bin/$(DDR1) $(STAGING_DIR_IMAGE)/
+endif
+ifneq ($(DDR2),)
+	$(CP) $(PKG_BUILD_DIR)/bin/$(DDR2) $(STAGING_DIR_IMAGE)/
 endif
 endif
 endef

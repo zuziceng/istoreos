@@ -153,6 +153,26 @@ $(call Device/rk3568)
 endef
 TARGET_DEVICES += easepi_ars4
 
+define Device/easepi_r1
+$(call Device/rk3568)
+  DEVICE_VENDOR := EasePi
+  DEVICE_MODEL := R1
+  DEVICE_DTS := rk3568-easepi-r1
+  SUPPORTED_DEVICES += easepi,r1
+  DEVICE_PACKAGES := kmod-r8125 kmod-r8168 kmod-nvme kmod-thermal
+endef
+TARGET_DEVICES += easepi_r1
+
+define Device/easepi_r2
+$(call Device/rk3568)
+  DEVICE_VENDOR := EasePi
+  DEVICE_MODEL := R2
+  DEVICE_DTS := rk3568-easepi-r2
+  SUPPORTED_DEVICES += easepi,r2
+  DEVICE_PACKAGES := kmod-r8125 kmod-nvme kmod-thermal
+endef
+TARGET_DEVICES += easepi_r2
+
 define Device/friendlyelec_nanopi-r3s
 $(call Device/rk3566)
   DEVICE_VENDOR := FriendlyARM
@@ -201,6 +221,27 @@ $(call Device/rk3568)
   DEVICE_PACKAGES := kmod-r8125 kmod-nvme kmod-scsi-core
 endef
 TARGET_DEVICES += lyt_t68m
+
+define Device/lyt_t88m
+$(call Device/rk3588)
+  DEVICE_MODEL := T88M
+  DEVICE_VENDOR := LYT
+  DEVICE_PACKAGES := kmod-r8125 kmod-nvme kmod-scsi-core
+  SUPPORTED_DEVICES += lyt,t88m
+  DEVICE_DTS := rk3588-t88m
+  UBOOT_DEVICE_NAME := lyt-rk3588
+endef
+TARGET_DEVICES += lyt_t88m
+
+define Device/yijiahe_jm10
+$(call Device/rk3588)
+  DEVICE_VENDOR := YIJIAHE
+  DEVICE_MODEL := JM10
+  DEVICE_PACKAGES := kmod-r8125 kmod-nvme kmod-scsi-core kmod-hwmon-pwmfan kmod-thermal kmod-dsa-mv88e6xxx kmod-rkwifi-bcmdhd-pcie rkwifi-firmware-ap6275p
+  SUPPORTED_DEVICES += yijiahe,jm10
+  DEVICE_DTS := rk3588-yijiahe-jm10
+endef
+TARGET_DEVICES += yijiahe_jm10
 
 define Device/hinlink_rk3588
 $(call Device/rk3588)
@@ -282,9 +323,39 @@ $(call Device/rk3568)
   DEVICE_MODEL := NAS LITE
   DEVICE_DTS := rk3568-dg-nas-lite
   SUPPORTED_DEVICES += dg,nas-lite
-  DEVICE_PACKAGES := kmod-nvme kmod-scsi-core
+  DEVICE_PACKAGES := kmod-nvme kmod-scsi-core kmod-hwmon-pwmfan kmod-thermal
 endef
 TARGET_DEVICES += dg_nas-lite
+
+define Device/dg_tn3568
+$(call Device/rk3568)
+  DEVICE_VENDOR := DG
+  DEVICE_MODEL := TN3568
+  DEVICE_DTS := rk3568-dg-tn3568
+  SUPPORTED_DEVICES += dg,tn3568
+  DEVICE_PACKAGES := kmod-scsi-core kmod-hwmon-pwmfan kmod-thermal
+endef
+TARGET_DEVICES += dg_tn3568
+
+define Device/ezpro_mrkaio-m68s
+$(call Device/rk3568)
+  DEVICE_VENDOR := EZPRO
+  DEVICE_MODEL := Mrkaio M68S
+  DEVICE_DTS := rk3568-mrkaio-m68s
+  SUPPORTED_DEVICES += ezpro,mrkaio-m68s
+  DEVICE_PACKAGES := kmod-scsi-core kmod-thermal
+endef
+TARGET_DEVICES += ezpro_mrkaio-m68s
+
+define Device/ezpro_mrkaio-m68s-plus
+$(call Device/rk3568)
+  DEVICE_VENDOR := EZPRO
+  DEVICE_MODEL := Mrkaio M68S PLUS
+  DEVICE_DTS := rk3568-mrkaio-m68s-plus
+  SUPPORTED_DEVICES += ezpro,mrkaio-m68s-plus
+  DEVICE_PACKAGES := kmod-r8125 kmod-nvme kmod-scsi-core kmod-hwmon-pwmfan kmod-thermal
+endef
+TARGET_DEVICES += ezpro_mrkaio-m68s-plus
 
 define Device/ynn_ynnnas
   $(call Device/rk3566)
@@ -324,6 +395,15 @@ $(call Device/rk3566)
 endef
 TARGET_DEVICES += le_hes30
 
+define Device/linkfog_ala2
+$(call Device/rk3568)
+  DEVICE_VENDOR := Linkfog
+  DEVICE_MODEL := ALA2
+  DEVICE_DTS := rk3568-ala2
+  DEVICE_PACKAGES := kmod-nvme kmod-scsi-core kmod-thermal kmod-switch-rtl8367b swconfig
+endef
+TARGET_DEVICES += linkfog_ala2
+
 define Device/mangopi_m28k
 $(call Device/rk3528_rtl8111h)
   DEVICE_VENDOR := MangoPi
@@ -344,6 +424,7 @@ define Device/radxa_e52c
 $(call Device/rk3582)
   DEVICE_VENDOR := Radxa
   DEVICE_MODEL := E52C
+  UBOOT_DEVICE_NAME := easepi-ddr1-rk3588
 endef
 TARGET_DEVICES += radxa_e52c
 
@@ -359,9 +440,9 @@ define Device/roc_k40pro
 $(call Device/rk3568)
   DEVICE_VENDOR := ROCEOS
   DEVICE_MODEL := K40PRO
-  DEVICE_DTS := rk3568-roc-k40pro
+  DEVICE_DTS := rk3568-roc-k40pro-v2
   SUPPORTED_DEVICES += roceos,k40pro
-  DEVICE_PACKAGES := kmod-r8125 kmod-nvme kmod-thermal
+  DEVICE_PACKAGES := kmod-r8125 kmod-r8168 kmod-nvme kmod-thermal
 endef
 TARGET_DEVICES += roc_k40pro
 
